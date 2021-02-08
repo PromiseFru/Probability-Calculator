@@ -20,25 +20,21 @@ class Hat:
             self.contents.pop(random_number)
         return balls_drawn
 
-# def expected_balls_names(expected_balls):
-#     expected_names = [] 
-#     for key, value in expected_balls.items():
-#         for x in range(value):
-#             expected_names.append(key)
-#     return expected_names
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
+    match_count = 0
 
-# def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
-#     match_count = 0
+    for x in range(num_experiments):
+        mainHat = copy.deepcopy(hat)
+        draws = mainHat.draw(num_balls_drawn)
+        matches = []
+        for key, value in expected_balls.items():
+            if draws.count(key) >= value:
+                matches.append('True')
+            else:
+                matches.append('False')
+        if 'False' not in matches:
+            match_count += 1
 
-#     for x in range(num_experiments):
-#         matches = False
-#         draws = hat.draw(num_balls_drawn)
-#         for key, value in expected_balls.items():
-#             if draws.count(key) == value:
-#                 matches = True
-#         if matches == True:
-#             match_count + 1
+    result = match_count/num_experiments
 
-#     result = match_count/num_experiments
-
-#     return result
+    return result

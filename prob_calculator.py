@@ -10,7 +10,7 @@ class Hat:
                 self.contents.append(key)
 
     def draw(self, number_of_balls_to_draw):
-        ball_collection = self.contents
+        ball_collection = copy.deepcopy(self.contents)
         balls_drawn = []
         if number_of_balls_to_draw > len(ball_collection):
             return ball_collection
@@ -21,6 +21,6 @@ class Hat:
         return balls_drawn
 
 hat = Hat(red=4, black = 2)
-print(hat.draw(3))
+print(hat.draw(4))
 
 # def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
